@@ -35,9 +35,10 @@ int main(){
              anio ++;
          }
          else {
-             cout << " Erro de Digitalizacion " << endl;
+             
          }
-         return 0;;
+           cout << " Error de Digitalizacion " << endl;
+         return 0;
      }
      
      cout << dia << '/' << mes << '/' << anio << endl;

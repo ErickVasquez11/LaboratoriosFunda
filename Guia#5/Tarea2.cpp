@@ -20,7 +20,7 @@ int SegundoDespues (){
         horas = horas + 1;
     }else
     {
-        cout << " ERROR: Hora Incorrecta " << endl;
+       cout << " ERROR: Hora Incorrecta " << endl;
     }
        return 0;
     }
