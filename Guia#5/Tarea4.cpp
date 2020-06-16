@@ -12,10 +12,11 @@ int DiaMes(int mes, int anio){
          if(anioBisiesto(anio)){
              dias = 29;
          }else {
-
+            dias = 28;
          }
-         dias = 28;
+          cout << " Error de Digitalizacion " << endl;
      }
+          
      return dias;
 }
 int main(){
@@ -34,12 +35,8 @@ int main(){
              mes = 1;
              anio ++;
          }
-         else {
-             
-         }
-           cout << " Error de Digitalizacion " << endl;
-         return 0;
+
      }
-     
+   
      cout << dia << '/' << mes << '/' << anio << endl;
 }
