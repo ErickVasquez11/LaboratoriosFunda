@@ -37,7 +37,7 @@ int main(){
          else {
              
          }
-           cout << " Erro de Digitalizacion " << endl;
+           cout << " Error de Digitalizacion " << endl;
          return 0;;
      }
      
