@@ -35,8 +35,9 @@ int main(){
              anio ++;
          }
          else {
-             cout << " Erro de Digitalizacion " << endl;
+             
          }
+           cout << " Erro de Digitalizacion " << endl;
          return 0;;
      }
      
