@@ -10,9 +10,9 @@ int DiaMes(int mes, int anio){
          dias = 30;
      }else if (mes == 2){
          if(anioBisiesto(anio)){
-             dias = 28 && 29;
+             dias = 28 ;
          }else {
-            cout << " La fecha No es bisiesta ";
+           dias = 29;
          }
 
      }
@@ -38,8 +38,8 @@ int main(){
          } else {
              
          }
-          cout << " Error de Digitalizacion "  << endl;
-          return 0;
+          
+        
      } 
      
    
