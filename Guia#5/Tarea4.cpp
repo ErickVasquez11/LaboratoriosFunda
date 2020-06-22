@@ -35,13 +35,9 @@ int main(){
          if (mes > 12){
              mes = 1;
              anio ++;
-         } else {
-             
+         
          }
-          
-        
-     } 
-     
+     }   
    
      cout << dia << '/' << mes << '/' << anio << endl;
 }
