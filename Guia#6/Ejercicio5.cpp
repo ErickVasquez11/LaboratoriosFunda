@@ -11,7 +11,7 @@ int main()
     for (i = 200; i >=0; i--){
         numero = numero + 1;
        
-        if ( i%2!=0 ){ // quesea diferente de 2 osea impar
+        if ( i%2!=0 ){ 
 
                     valores[i] = numero;
                 
