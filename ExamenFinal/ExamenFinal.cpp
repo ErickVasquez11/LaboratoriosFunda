@@ -22,7 +22,8 @@ void DatosNombre(CostoPorArticulo Articulo[], int CantidadProducto){
             cin >> Articulo[i].CantidadProducto; // ordena y guarda en la variable indicada
             cout << " Precio Unitario : $";
             cin >> Articulo[i].Precio;
-            cout << "******* Contenido de Compra ****** " << endl; // Titulo de la factura y separador de compra.
+            cout << "\n";
+          
         }
 
 }
@@ -34,7 +35,7 @@ void CostoArticulo(CostoPorArticulo Articulo[], int CantidadProducto){
 }
 
 void MostrarDatos(CostoPorArticulo Articulo[], int CantidadProducto){
-    
+    cout << "******* Contenido de Compra ****** " << endl; // Titulo de la factura y separador de compra.
     for(int i = 0; i < CantidadProducto; i++){
         cout << "* Nombre del Articulo: " << Articulo[i].NombreArticulo << endl;  // guarda y ordena los datos en la estructura.
         cout << " Cantidad de Articulos: " << Articulo[i].CantidadProducto << endl;
