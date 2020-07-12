@@ -15,14 +15,14 @@ void DatosNombre(CostoPorArticulo Articulo[], int Cantidad){
         cout << '\n' << endl;
         cout << " Ingrese los datos de los articulos  " <<endl;
         for(int i = 0; i < Cantidad; i++){                  
-            cin.ignore(100,  '\n');        // ignora las entradas hasta 100
+            cin.ignore(100,  '\n');        // no lea el enter y sale a la siguiente iteracion.
             cout << " Ingrese Nombre del Articulo : ";
             cin.getline(Articulo[i].NombreArticulo, 21 , '\n'); // lee incluye espacios
             cout << " Ingrese Cantidad de Articulo: ";
             cin >> Articulo[i].Cantidad; // ordena y guarda en la variable indicada
-            cout << " Ingrese el Precio Unitario :";
+            cout << " Ingrese el Precio Unitario : $";
             cin >> Articulo[i].Precio;
-            cout << "*********** Contenido de Compra ****** " << endl; // Titulo de la factura y separador de compra.
+            cout << "******* Contenido de Compra ****** " << endl; // Titulo de la factura y separador de compra.
         }
 
 }
@@ -39,7 +39,7 @@ void MostrarDatos(CostoPorArticulo Articulo[], int Cantidad){
         cout << " Nombre del Articulo: " << Articulo[i].NombreArticulo << endl;  // guarda y ordena los datos en la estructura.
         cout << " Cantidad de Articulos: " << Articulo[i].Cantidad << endl;
         cout << " Precio Unitario del Articulo: " << Articulo[i].Precio << endl;
-        cout << " Precio Total: " << Articulo[i].CostoPorArticulo << endl;
+        cout << " Precio Total: $" << Articulo[i].CostoPorArticulo << endl;
     }
 }
 
@@ -53,16 +53,16 @@ float CostoTotalCompra(CostoPorArticulo Articulo[],int Cantidad){
 
 int main(){
     
-    int CantidadArticulos, Total;               
+    int CantArticulos, Total;               
     cout << " Cantidad de Articulos : "; 
-    cin >> CantidadArticulos;
+    cin >> CantArticulos;
 
-    
-    CostoPorArticulo ArticulosGuardados[CantidadArticulos];       // se llaman a las funciones para hacer el procesamiento de la factura, 
-    DatosNombre(ArticulosGuardados, CantidadArticulos);            // con las variables y el resultado llamando todo a la estructura   
-    CostoArticulo(ArticulosGuardados, CantidadArticulos);
-    MostrarDatos(ArticulosGuardados, CantidadArticulos);
-    cout << " Precio Total de Compra: " << CostoTotalCompra(ArticulosGuardados, CantidadArticulos); /*precio total sera la funcion costo total de compra y llamando las variables de 
+
+    CostoPorArticulo ArtGuardados[CantArticulos];       // se llaman a las funciones para hacer el procesamiento de la factura, 
+    DatosNombre(ArtGuardados, CantArticulos);            // con las variables y el resultado llamando todo a la estructura   
+    CostoArticulo(ArtGuardados, CantArticulos);
+    MostrarDatos(ArtGuardados, CantArticulos);
+    cout << " Precio Total de Compra: $" << CostoTotalCompra(ArtGuardados, CantArticulos); /*precio total sera la funcion costo total de compra y llamando las variables de 
                                                                                                     datos guardados.*/
 
     return 0;
