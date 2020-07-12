@@ -49,7 +49,7 @@ float CostoTotalCompra(CostoPorArticulo Articulo[],int CantidadProducto){
     for(int i = 0; i < CantidadProducto; i++){                            // donde el total sera igual al costo por articulo mas total ordenado en la variable.
         Total = Articulo[i].CostoPorArticulo + Total; 
     }
-    return Total;
+    return Total;                                                          // retorna el costo de cada producto.
 }
 
 int main(){
