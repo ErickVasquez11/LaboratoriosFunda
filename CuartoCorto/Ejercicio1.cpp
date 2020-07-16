@@ -2,25 +2,25 @@
  
 using namespace std;
 
-char codiLetra( char caracter){  // asignamos caracteres.
-    switch (caracter)    // hacemos un switch case para guardar cada uno de los caracteres asignados.
+char codiLetra( char valor){  // asignamos caracteres.
+    switch (valor)    // hacemos un switch case para guardar cada uno de los caracteres asignados.
     {
-        case 'm': caracter = '0'; break;
-        case 'u': caracter = '1'; break;
-        case 'r': caracter = '2'; break;
-        case 'c': caracter = '3'; break;
-        case 'i': caracter = '4'; break;
-        case 'e': caracter = '5'; break;
-        case 'l': caracter = '6'; break;
-        case 'a': caracter = '7'; break;
-        case 'g': caracter = '8'; break;
-        case 'o': caracter = '9'; break;
+        case 'm': valor = '0'; break;
+        case 'u': valor = '1'; break;
+        case 'r': valor = '2'; break;
+        case 'c': valor = '3'; break;
+        case 'i': valor = '4'; break;
+        case 'e': valor = '5'; break;
+        case 'l': valor = '6'; break;
+        case 'a': valor = '7'; break;
+        case 'g': valor = '8'; break;
+        case 'o': valor = '9'; break;
     }
-      return caracter; 
+      return valor; 
 }
 
 int main(){
-    int i = 0; // asignamos valor a la variable i.
+    
     int longitud;
     string arreglo; 
     
@@ -28,7 +28,7 @@ int main(){
     getline(cin,arreglo);       
     longitud = arreglo.length(); // cuenta el numero de caracteres del arreglo.
 
-    for (i = 0; i < longitud; i++){  // longitud no tiene que ser menor que 0. 
+    for ( int i = 0; i < longitud; i++){  // longitud no tiene que ser menor que 0. 
         cout << (codiLetra(arreglo[i])); // unimos la funcion con el arreglo y asi poder tener la combinacion de letras.
     }
     return 0;   
