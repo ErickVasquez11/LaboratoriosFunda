@@ -1,90 +1,190 @@
 #include <iostream>
-#include <string>
-#include <string.h>
+#include <vector>
+#include <queue>
+
 using namespace std;
-const int longCad = 20;
-struct costoPorArticulo
+
+struct producto
 {
-    char nombreArticulo[longCad+1];
-    int cantidad;
-    float precio;
-    float subtotal;
-    float total;
-    float costoporArticulo;
+  string nombre;
+  float precio_unitario;
 };
-void DatosDeArticulos(int n, int cantidad, char articulo, float precio,string cad, costoPorArticulo arreglo[]){ 
-    for (int i = 0; i < n; i++)
-    {
-        cout<<"Ingrese el nombre del articulo: ";
-        getline(cin,cad, '\n');
-        strncpy(arreglo[i].nombreArticulo, cad.c_str(), longCad);
-        arreglo[i].nombreArticulo[longCad]='\0';
-        cout<<"Ingrese la cantidad que de ese articulo: ";
-        cin>>arreglo[i].cantidad;
-        cout<<"Ingrese el precio del articulo: ";
-        cin>>arreglo[i].precio;
-        cin.ignore(100, '\n');
-    }
-    
-}
-void CostoporArt(float precio, int n, costoPorArticulo arreglo[], int cantidad, float costoporArticulo){ 
 
-    for (int i = 0; i < n; i++)
-    {
-        arreglo[i].costoporArticulo =   arreglo[i].precio * arreglo[i].cantidad; //arreglar
-    }
-    
-}
-void DesplieguedelArray(int n, costoPorArticulo arreglo[],float costoporArticulo){ 
-    cout<<"----------------------------------------------------------------------------------------------------+"<<endl;
-    cout<<"nombre del articulo"<<"\tcantidad del articulo"<<"\tprecio unitario de cada articulo"<<"\tcosto por articulo  |"<<endl;
-    cout<<"----------------------------------------------------------------------------------------------------+"<<endl;
-    for (int i = 0; i < n; i++)
-    {
-        cout<<arreglo[i].nombreArticulo<<' ';
-        cout<<"\t\t\t";
-        cout<<arreglo[i].cantidad<<' ';
-        cout<<"\t\t\t";
-        cout<<arreglo[i].precio<<' ';
-        cout<<"\t\t\t";
-        cout<<arreglo[i].costoporArticulo<<' '<<endl;
-    }
-    cout<<"----------------------------------------------------------------------------------------------------+\n";
-}
-float TotalCosto(int n, costoPorArticulo arreglo[], float costoporArticulo,float IVA, float subtotal, float total){ 
+struct pedido
+{
+  string apellido;
+  vector<producto> lista_comida;
+};
 
-    for (int i = 0; i < n; i++)
-    {
-        subtotal = (arreglo[i].costoporArticulo + subtotal);
-        IVA= subtotal * 0.13;
-        total = subtotal + IVA;
-        cout<<"subtotal: "<<subtotal<<endl;
-        cout<<"Totals: "<<total<<endl;
-
-    }
-
+int elegirProducto() {
+  int opcion;
+  do {
+    cout << "-- ELEGIR UN PRODUCTO --" << endl;
+    cout << "1. Donas" << endl;
+    cout << "2. Platos fuertes" << endl;
+    cout << "3. Regresar" << endl;
+    cout << "Ingrese la opcion deseada : ";cin >> opcion;
+  }while(opcion > 3 || opcion < 1);
+  
+  return opcion;
 }
 
-int main(){ 
-     int articulo;
-    int cantidad;
-    string cad;
-    float precio;
-    float costoporArticulo;
-    float subtotal;
-    float IVA;
-    float total;
-    char x;
-    int n, i;
-    cout<<"Ingrese la catidad de articulos que llevara: ";
-    cin>>n;
-    cin.ignore(100, '\n');
-    costoPorArticulo arreglo[n];
-    DatosDeArticulos(n,cantidad,articulo,precio,cad, arreglo);
-    CostoporArt(precio,n,arreglo,cantidad, costoporArticulo);
-    DesplieguedelArray(n,arreglo,costoporArticulo);
-    TotalCosto(n,arreglo,costoporArticulo,IVA, subtotal, total);
-    cout<<"\t\t\t\t\t\t\t\t\t\t\tSubtotal: "<<subtotal<<endl;
-    cout<<"\t\t\t\t\t\t\t\t\t\t\tTotal: "<<total;
-    return 0;
+
+producto obtenerProductoComprado(int opcion) {
+  producto nuevoProducto;
+  switch (opcion) {
+  case 1:
+    nuevoProducto.nombre = "sencilla";
+    nuevoProducto.precio_unitario = 1;
+    break;
+  case 2:
+    nuevoProducto.nombre = "rellena de leche";
+    nuevoProducto.precio_unitario = 1.25;
+    break;
+  case 3:
+    nuevoProducto.nombre = "sabor especial";
+    nuevoProducto.precio_unitario = 1.50;
+    break;
+  case 4:
+    nuevoProducto.nombre = "desayuno";
+    nuevoProducto.precio_unitario = 2.5;
+    break;
+  case 5:
+    nuevoProducto.nombre = "almuerzo";
+    nuevoProducto.precio_unitario = 5;
+    break;
+  case 6:
+    nuevoProducto.nombre = "cena";
+    nuevoProducto.precio_unitario = 3.5;
+    break;
+  }
+  return nuevoProducto;
+}
+
+void comprarDona(queue<pedido> &donas, pedido &nuevoPedido) {
+  int opcion;
+  do {
+    cout << "-- MENU DONAS --" << endl;
+    cout << "1. Sencilla - $1.00" << endl;
+    cout << "2. Rellena de leche - $1.25" << endl;
+    cout << "3. Sabores especiales - $1.50" << endl;
+    cout << "4. Regresar" << endl;
+     cout << "Ingrese la opcion deseada : ";cin >> opcion;
+
+    switch (opcion) {
+    case 1:
+      nuevoPedido.lista_comida.push_back(obtenerProductoComprado(1));
+      break;
+    case 2:
+      nuevoPedido.lista_comida.push_back(obtenerProductoComprado(2));
+      break;
+    case 3:
+      nuevoPedido.lista_comida.push_back(obtenerProductoComprado(3));
+      break;
+    case 4: break;
+    default:
+      cout << "Ingrese una opcion valida" << endl;
+      break;
+    }
+  } while (opcion != 4);
+}
+
+void comprarPlato(queue<pedido> &platos, pedido &nuevoPedido) {
+  int opcion;
+  do {
+    cout << "-- MENU PLATOS --" << endl;
+    cout << "1. Desayuno - $2.50" << endl;
+    cout << "2. Almuerzo - $5.00" << endl;
+    cout << "3. Cena - $3.50" << endl;
+    cout << "4. Regresar" << endl;
+     cout << "Ingrese la opcion deseada : ";cin >> opcion;
+
+    switch (opcion) {
+    case 1:
+      nuevoPedido.lista_comida.push_back(obtenerProductoComprado(4));
+      break;
+    case 2:
+      nuevoPedido.lista_comida.push_back(obtenerProductoComprado(5));
+      break;
+    case 3:
+      nuevoPedido.lista_comida.push_back(obtenerProductoComprado(6));
+      break;
+    case 4: break;
+    default:
+      cout << "Ingrese una opcion valida" << endl;
+      break;
+    }
+  } while (opcion != 4);
+}
+
+void atenderClientes(queue<pedido> &donas, queue<pedido> &platos) {
+  int productoElegido = 0;
+  pedido nuevoPedido;
+
+  cout << "Ingrese su apellido: ";
+  cin >> nuevoPedido.apellido;
+  productoElegido = elegirProducto();
+
+  switch (productoElegido) {
+  case 1:
+    comprarDona(donas, nuevoPedido);
+    donas.push(nuevoPedido);
+    break;
+  case 2:
+    comprarPlato(platos, nuevoPedido);
+    platos.push(nuevoPedido);
+    break;
+  case 3: break;
+  }
+}
+
+void calcularGanancias(queue<pedido> cola) {
+  queue<pedido> copia = cola;
+  pedido actual;
+  producto productoActual;
+  float total = 0;
+  while(!copia.empty()) {
+    actual = copia.front();
+    while(!actual.lista_comida.empty()) {
+      productoActual = actual.lista_comida.back();
+      total += productoActual.precio_unitario;
+      actual.lista_comida.pop_back();
+    }
+    copia.pop();
+  }
+  cout << "El total de ganancia es, $" << total << endl;
+}
+
+void mostrarMenu(queue<pedido> &donas, queue<pedido> &platos) {
+  int opcion = 0;
+  do {
+    cout << "----- MENU PRINCIPAL -----" << endl;
+    cout << "1. Atender pedidos de clientes" << endl;
+    cout << "2. Calcular ganancias por venta de donas" << endl;
+    cout << "3. Calcular ganancias por venta de platos fuertes" << endl;
+    cout << "4. Salir" << endl;
+    cout << "Ingrese la opcion deseada : ";cin >> opcion;
+    cin.ignore();
+    switch (opcion) {
+    case 1:
+      atenderClientes(donas, platos);
+      break;
+    case 2:
+      calcularGanancias(donas);
+      break;
+    case 3:
+      calcularGanancias(platos);
+      break;
+    case 4: break;
+    default:
+      cout << "Seleccione una opcion valida" << endl;
+      break;
+    }
+  } while (opcion != 4);
+}
+
+int main() {
+  queue<pedido> donas, platos_fuertes;
+  mostrarMenu(donas, platos_fuertes);
+  return 0;
 }
